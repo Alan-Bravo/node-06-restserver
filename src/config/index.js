@@ -12,4 +12,7 @@ module.exports = {
   api: {
     prefix: '/api/v1',
   },
+  log: {
+    level: process.env.LOG_LEVEL,
+  },
 };
