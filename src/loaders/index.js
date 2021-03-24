@@ -7,7 +7,7 @@ module.exports = async () => {
   logger.info('Express loaded');
 
   server.start();
-  logger.info(`########################################`);
-  logger.info(`Server listening on port: ${config.port}`);
-  logger.info(`########################################`);
+  logger.info(`########################################
+      Server listening on port: ${config.port}
+      ########################################`);
 };

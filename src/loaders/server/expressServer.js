@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const config = require('../../config');
+const logger = require('../logger');
 
 class ExpressServer {
   constructor() {
@@ -30,7 +31,7 @@ class ExpressServer {
 
   _notFound() {
     this.app.use((req, res, next) => {
-      const err = new Error("Not Found");
+      const err = new Error('Not Found');
       err.code = 404;
       next(err);
     });
@@ -43,17 +44,17 @@ class ExpressServer {
       const body = {
         error: {
           code,
-          message: err.message
-        }
-      }
+          message: err.message,
+        },
+      };
       res.json(body);
-    })
+    });
   }
 
   async start() {
     this.app.listen(this.port, (error) => {
       if (error) {
-        console.log(error);
+        logger.error(error);
         process.exit(1);
         return;
       }
