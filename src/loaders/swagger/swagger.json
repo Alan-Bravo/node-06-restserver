@@ -3,14 +3,10 @@
   "info": {
     "title": "API Rest base repo",
     "description": "This is an API base to start new proyects",
+    "version": "0.0.1",
     "contact": {
       "email": "bravoalangonzalo@gmail.com"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    },
-    "version": "0.0.1"
+    }
   },
   "servers": [
     {
@@ -29,7 +25,7 @@
     }
   ],
   "paths": {
-    "/users": {
+    "/users/": {
       "get": {
         "tags": [
           "users"
@@ -49,9 +45,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "description": "bad input parameter"
           }
         }
       },
@@ -61,40 +54,49 @@
         ],
         "summary": "Create a new user",
         "description": "",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          }
+        },
         "responses": {
           "201": {
             "description": "User created"
           }
         }
       }
-    }
-  },
-  "/users/{id}": {
-    "put": {
-      "tags": [
-        "users"
-      ],
-      "summary": "Update an existing user by providing the id",
-      "description": "",
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "description": "The id of user that needs to be updated",
-          "required": true,
-          "schema": {
-            "type": "integer"
+    },
+    "/users/{id}": {
+      "put": {
+        "tags": [
+          "users"
+        ],
+        "summary": "Update an existing user by providing the id",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The id of user that needs to be updated",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
           }
-        }
-      ],
-      "responses": {
-        "200": {
-          "description": "User updated",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "$ref": "#/components/schemas/User"
+        ],
+        "responses": {
+          "200": {
+            "description": "User updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/User"
+                }
               }
             }
           }
@@ -113,7 +115,6 @@
           "id": {
             "description": "User id",
             "type": "integer",
-            "format": "uuid",
             "example": "3"
           },
           "name": {
